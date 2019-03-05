@@ -1,0 +1,29 @@
+<html>
+	<head>
+		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+		  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
+	</head>
+	<body>
+		<div style="height:600px;width:1000px;" id="mapid"></div>
+		<script>
+			var mymap = L.map('mapid').setView([40, -66],4);
+                        mymap.on('load', () => {
+				//mymap.invalidateSize();
+				mymap.redraw();
+			}); 
+			var wms_options = {
+				layers: 'Admin Countries', crs: L.CRS.EPSG4326
+			}; 
+			var wmsLayer = L.tileLayer.wms(
+				'http://localhost/cgi-bin/mapserv?map=/usr/lib/cgi-bin/mapserverexample/myfirst.map&SERVICE=WMS&VERSION=1.1.1&', 
+				wms_options).addTo(mymap);
+
+			mymap.invalidateSize();
+
+		</script>
+	</body>
+</html>
